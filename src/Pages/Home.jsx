@@ -5,7 +5,7 @@ import CTA from "../Components/Home/CTA";
 import Hero from "../Components/Home/Hero";
 import ProjectDeliver from "../Components/Home/ProjectDeliver";
 import Textslider from "../Components/Home/Textslider";
-import OurWorkingprocess from "../Components/Home/OurWorkingprocess";
+import OurWorkingprocess from "../Components/Home/OurWorkingProcess";
 import Team from "../Components/Home/Team";
 import Vision from "../Components/Home/Vision";
 
