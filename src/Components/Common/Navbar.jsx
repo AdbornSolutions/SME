@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import logo from '../../assets/logo.png'
 
 const navigationItems = [
   { label: 'Home', href: '#home' },
@@ -16,8 +17,8 @@ export default function Navbar() {
 
   return (
     <header className="relative z-20 grid min-h-[78px] w-full grid-cols-[1fr_auto_1fr] items-center rounded-[22px] bg-[#f7f7f5] px-9 py-4 text-[#06284a] max-[900px]:min-h-[68px] max-[900px]:grid-cols-[1fr_auto] max-[900px]:px-6">
-      <a className="justify-self-start font-['Arial_Narrow',Arial,sans-serif] text-[15px] font-extrabold tracking-[-.55px] no-underline max-[900px]:text-[13px]" href="#home" aria-label="SME Infra home" onClick={closeMenu}>
-        LOGO
+      <a className="justify-self-start" href="#home" aria-label="SME Infra home" onClick={closeMenu}>
+        <img className="h-auto w-[clamp(52px,5vw,78px)] object-contain" src={logo} alt="SME Infra" />
       </a>
 
       <button
