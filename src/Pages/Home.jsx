@@ -12,7 +12,7 @@ import Vision from "../Components/Home/Vision";
 export default function Home() {
   return (
     <main className="flex flex-col gap-20">
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-4">
         <Hero />
         <Textslider />
       </div>
