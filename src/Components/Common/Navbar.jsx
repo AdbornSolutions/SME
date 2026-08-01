@@ -2,12 +2,12 @@ import { useState } from "react";
 import logo from "../../assets/logo.png";
 
 const navigationItems = [
-  { label: "Home", href: "#home" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Industries", href: "#industries" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Industries", href: "/#industries" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -19,7 +19,7 @@ export default function Navbar() {
     <header className="relative z-20 grid min-h-[78px] w-full grid-cols-[1fr_auto_1fr] items-center rounded-[22px] bg-[#f7f7f5] px-9 py-4 text-[#06284a] max-[900px]:min-h-[68px] max-[900px]:grid-cols-[1fr_auto] max-[900px]:px-6">
       <a
         className="justify-self-start"
-        href="#home"
+        href="/"
         aria-label="SME Infra home"
         onClick={closeMenu}
       >
@@ -60,7 +60,7 @@ export default function Navbar() {
 
       <a
         className="justify-self-end rounded-full bg-[#ff4d2d] px-4 pb-[11px] pt-[10px] font-['Arial_Narrow',Arial,sans-serif] text-[13px] font-extrabold uppercase tracking-[-.35px] text-white no-underline transition-all duration-200 hover:-translate-y-px hover:bg-[#e93e20] focus-visible:bg-[#e93e20] focus-visible:outline-none max-[900px]:hidden"
-        href="#contact"
+        href="/#contact"
         onClick={closeMenu}
       >
         Get a quote

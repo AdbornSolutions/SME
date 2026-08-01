@@ -1,4 +1,5 @@
 import industryServiceImage from "../../assets/Industry&Service.png";
+import aboutTextBackground from "../../assets/Abouttextbg.png";
 
 const highlights = [
   {
@@ -21,15 +22,12 @@ export default function AboutUs() {
       className="relative overflow-hidden bg-[#f4f2ef] px-[clamp(24px,7.8vw,120px)]"
       id="about"
     >
-      <div
+      <img
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-10 left-[6%] h-[62%] w-[40%] opacity-[.28] max-[900px]:hidden"
-      >
-        <span className="absolute inset-[12%_4%_5%_4%] border border-[#cfcac4]" />
-        <span className="absolute left-[8%] top-[30%] h-[55%] w-[72%] -skew-y-[13deg] border border-[#cfcac4]" />
-        <span className="absolute left-[30%] top-[4%] h-[68%] w-[46%] rotate-[37deg] border border-[#d6d1cb]" />
-        <span className="absolute bottom-[14%] left-[12%] h-[44%] w-[34%] border-x border-[#d6d1cb]" />
-      </div>
+        className="pointer-events-none absolute bottom-0 left-[3%] h-[92%] w-[47%] object-contain object-bottom opacity-30 max-[900px]:hidden"
+        src={aboutTextBackground}
+        alt=""
+      />
 
       <div className="relative mx-auto grid max-w-[1400px] items-center gap-[clamp(42px,7vw,120px)] lg:grid-cols-[.95fr_1fr]">
         <div>

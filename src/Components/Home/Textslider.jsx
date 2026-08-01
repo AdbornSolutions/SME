@@ -13,7 +13,7 @@ function Items({ duplicate = false }) {
     <div className="flex shrink-0 items-center" aria-hidden={duplicate}>
       {points.map((point) => (
         <span
-          className="flex items-center whitespace-nowrap pl-[clamp(20px,2.2vw,42px)] text-[clamp(10px,1vw,15px)] font-bold uppercase tracking-[.07em] max-[760px]:text-[10px]"
+          className="flex items-center whitespace-nowrap pl-[clamp(20px,2.2vw,42px)] text-[clamp(10px,1vw,15px)] font-bold uppercase  text-white  tracking-[.07em] max-[760px]:text-[10px]"
           key={`${point}-${duplicate}`}
         >
           {point}

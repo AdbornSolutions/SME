@@ -1,4 +1,5 @@
 import footerLogo from "../../assets/FooterLogo.png";
+import footerBackground from "../../assets/footerbg.png";
 
 const companyLinks = [
   "Home",
@@ -53,9 +54,11 @@ function SocialIcon({ label, children, className }) {
 export default function Footer() {
   return (
     <footer className="relative mx-2 mt-10 overflow-hidden rounded-t-[20px] bg-[#111213] px-[clamp(22px,4.5vw,68px)] pb-7 pt-[clamp(46px,6vw,78px)] text-white">
-      <div
+      <img
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-48 left-[27%] h-[520px] w-[850px] rotate-[-30deg] opacity-[.14] [background-image:linear-gradient(30deg,transparent_48%,#8b8e8f_49%,transparent_50%),linear-gradient(90deg,transparent_48%,#8b8e8f_49%,transparent_50%)] [background-size:92px_92px]"
+        className="pointer-events-none absolute inset-0 size-full object-cover object-bottom opacity-[.16]"
+        src={footerBackground}
+        alt=""
       />
       <div className="relative mx-auto max-w-[1400px]">
         <div className="grid gap-12 lg:grid-cols-[1.55fr_.6fr_1.25fr_.9fr] lg:gap-10">
