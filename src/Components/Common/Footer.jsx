@@ -5,9 +5,9 @@ const companyLinks = [
   "Home",
   "About Us",
   "Services",
-  "Our News",
+  "Our Blogs",
   "Contact",
-  "Our Career",
+  "Career",
 ];
 const serviceLinks = [
   "Cost Estimation & BOQ",

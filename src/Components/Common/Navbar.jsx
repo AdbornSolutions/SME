@@ -5,9 +5,9 @@ const navigationItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Industries", href: "/#industries" },
-  { label: "Contact Us", href: "/#contact" },
+  { label: "Career", href: "/career" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
