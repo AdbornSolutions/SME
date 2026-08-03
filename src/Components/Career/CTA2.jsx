@@ -26,9 +26,8 @@ function SocialMark({ type }) {
 
 function SocialPill({ label, icon }) {
   return (
-    <a
-      className="inline-flex h-[25px] items-center gap-[7px] rounded-full border border-[#ff4b2e] px-[8px] text-[12px] font-semibold text-[#181818] no-underline transition-colors hover:bg-[#ff4b2e] hover:text-white"
-      href="#social"
+    <span
+      className="inline-flex h-[25px] items-center gap-[7px] rounded-full border border-[#ff4b2e] px-[8px] text-[12px] font-semibold text-[#181818]"
       aria-label={label}
     >
       <span className="grid size-[16px] place-items-center rounded-full bg-[#ff4b2e] text-white">
@@ -37,7 +36,7 @@ function SocialPill({ label, icon }) {
         </svg>
       </span>
       {label}
-    </a>
+    </span>
   );
 }
 
@@ -101,7 +100,7 @@ export default function CTA2() {
             <div className="mt-[26px] flex flex-col items-start gap-[9px]">
               <a
                 className="inline-flex h-[25px] items-center gap-[6px] rounded-full border border-white px-[9px] text-[12px] font-semibold text-white no-underline transition-colors hover:bg-white hover:text-[#ff4328]"
-                href="/#contact"
+                href="/contact"
               >
                 Request a Quote <ArrowIcon />
               </a>

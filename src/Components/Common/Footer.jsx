@@ -1,20 +1,22 @@
+import { Link } from "react-router-dom";
 import footerLogo from "../../assets/FooterLogo.png";
 import footerBackground from "../../assets/footerbg.png";
 
 const companyLinks = [
-  "Home",
-  "About Us",
-  "Services",
-  "Our Blogs",
-  "Contact",
-  "Career",
+  { label: "Home", to: "/" },
+  { label: "About Us", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Our Blogs", to: "/blog" },
+  { label: "Contact", to: "/contact" },
+  { label: "Career", to: "/career" },
 ];
 const serviceLinks = [
-  "Cost Estimation & BOQ",
-  "Industrial Construction",
-  "Project Planning & Scheduling",
-  "Infrastructure Development",
-  "Quality Assurance",
+  { label: "Estimation & BOQ", to: "/services/estimation-and-boq" },
+  { label: "Land Development", to: "/services/land-development" },
+  { label: "Industrial Construction", to: "/services/industrial-construction" },
+  { label: "Factory Buildings", to: "/services/factory-buildings" },
+  { label: "Industrial Roads", to: "/services/industrial-roads" },
+  { label: "Master Planning", to: "/services/master-planning" },
 ];
 
 function LinkList({ title, links }) {
@@ -24,14 +26,14 @@ function LinkList({ title, links }) {
         {title}
       </h3>
       <ul className="mt-6 space-y-2.5">
-        {links.map((link) => (
-          <li key={link}>
-            <a
+        {links.map(({ label, to }) => (
+          <li key={to}>
+            <Link
               className="text-[clamp(11px,.9vw,15px)] uppercase leading-none text-white/55 transition-colors hover:text-[#ff4b2d]"
-              href={`#${link.toLowerCase().replaceAll(" ", "-")}`}
+              to={to}
             >
-              •&nbsp; {link}
-            </a>
+              <span aria-hidden="true">•&nbsp;</span> {label}
+            </Link>
           </li>
         ))}
       </ul>
@@ -41,17 +43,24 @@ function LinkList({ title, links }) {
 
 function SocialIcon({ label, children, className }) {
   return (
-    <a
-      className={`grid size-7 place-items-center rounded-full text-[15px] font-bold text-white transition-transform hover:-translate-y-1 ${className}`}
-      href="#social"
+    <span
+      className={`grid size-7 place-items-center rounded-full text-[15px] font-bold text-white ${className}`}
       aria-label={label}
     >
       {children}
-    </a>
+    </span>
   );
 }
 
 export default function Footer() {
+  const subscribe = (event) => {
+    event.preventDefault();
+    const email = new FormData(event.currentTarget).get("subscriberEmail");
+    const subject = encodeURIComponent("Newsletter subscription request");
+    const body = encodeURIComponent(`Please subscribe this email address: ${email}`);
+    window.location.href = `mailto:Info@smeinfra.com?subject=${subject}&body=${body}`;
+  };
+
   return (
     <footer className="relative mx-2 mt-10 overflow-hidden rounded-t-[20px] bg-[#111213] px-[clamp(22px,4.5vw,68px)] pb-7 pt-[clamp(46px,6vw,78px)] text-white">
       <img
@@ -63,18 +72,20 @@ export default function Footer() {
       <div className="relative mx-auto max-w-[1400px]">
         <div className="grid gap-12 lg:grid-cols-[1.55fr_.6fr_1.25fr_.9fr] lg:gap-10">
           <div>
-            <img
-              className="h-auto w-[clamp(90px,9vw,145px)]"
-              src={footerLogo}
-              alt="SME Engineers & Contractors"
-            />
+            <Link to="/" aria-label="SME Engineers & Contractors home">
+              <img
+                className="h-auto w-[clamp(90px,9vw,145px)]"
+                src={footerLogo}
+                alt="SME Engineers & Contractors"
+              />
+            </Link>
             <p className="mt-10 max-w-[330px] text-[clamp(15px,1.25vw,21px)] leading-[1.27] text-white">
               Our goal is to exceed expectations and create spaces that are both
               beautiful and practical.
             </p>
             <form
               className="mt-8 flex max-w-[390px]"
-              onSubmit={(event) => event.preventDefault()}
+              onSubmit={subscribe}
             >
               <label className="flex min-w-0 flex-1 items-center gap-3 bg-[#303131] px-5 text-white/65">
                 <svg
@@ -88,8 +99,11 @@ export default function Footer() {
                 <input
                   className="min-w-0 flex-1 bg-transparent py-5 text-[13px] outline-none placeholder:text-white/60"
                   type="email"
+                  name="subscriberEmail"
                   aria-label="Email address"
                   placeholder="Enter your email"
+                  autoComplete="email"
+                  required
                 />
               </label>
               <button
@@ -163,12 +177,12 @@ export default function Footer() {
         </div>
         <div className="mt-[clamp(48px,7vw,100px)] flex flex-col gap-5 border-t border-white/20 pt-5 text-[clamp(11px,.85vw,14px)] text-white/85 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex gap-5">
-            <a className="hover:text-[#ff4b2d]" href="#privacy">
+            <span>
               Privacy Policy
-            </a>
-            <a className="hover:text-[#ff4b2d]" href="#terms">
+            </span>
+            <span>
               Terms &amp; Conditions
-            </a>
+            </span>
           </div>
           <p>
             © 2026 SME. All Rights Reserved. Site Design and Maintained by

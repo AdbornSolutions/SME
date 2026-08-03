@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 const navigationItems = [
@@ -17,9 +18,9 @@ export default function Navbar() {
 
   return (
     <header className="relative z-20 grid min-h-[78px] w-full grid-cols-[1fr_auto_1fr] items-center rounded-[22px] bg-[#f7f7f5] px-9 py-4 text-[#06284a] max-[900px]:min-h-[68px] max-[900px]:grid-cols-[1fr_auto] max-[900px]:px-6">
-      <a
+      <Link
         className="justify-self-start"
-        href="/"
+        to="/"
         aria-label="SME Infra home"
         onClick={closeMenu}
       >
@@ -28,7 +29,7 @@ export default function Navbar() {
           src={logo}
           alt="SME Infra"
         />
-      </a>
+      </Link>
 
       <button
         className="hidden cursor-pointer border-0 bg-transparent p-2 max-[900px]:block"
@@ -47,24 +48,24 @@ export default function Navbar() {
         aria-label="Primary navigation"
       >
         {navigationItems.map(({ label, href }) => (
-          <a
+          <Link
             className="py-2 font-['Arial_Narrow',Arial,sans-serif] text-[14px] font-extrabold uppercase tracking-[-.55px] no-underline transition-colors duration-200 hover:text-[#ff4d2d] focus-visible:text-[#ff4d2d] focus-visible:outline-none min-[901px]:py-0"
             key={label}
-            href={href}
+            to={href}
             onClick={closeMenu}
           >
             {label}
-          </a>
+          </Link>
         ))}
       </nav>
 
-      <a
+      <Link
         className="justify-self-end rounded-full bg-[#ff4d2d] px-4 pb-[11px] pt-[10px] font-['Arial_Narrow',Arial,sans-serif] text-[13px] font-extrabold uppercase tracking-[-.35px] text-white no-underline transition-all duration-200 hover:-translate-y-px hover:bg-[#e93e20] focus-visible:bg-[#e93e20] focus-visible:outline-none max-[900px]:hidden"
-        href="/#contact"
+        to="/contact"
         onClick={closeMenu}
       >
         Get a quote
-      </a>
+      </Link>
     </header>
   );
 }
