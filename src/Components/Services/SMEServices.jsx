@@ -9,12 +9,12 @@ import serviceFive from "../../assets/optimized/services/5.webp";
 import serviceSix from "../../assets/optimized/services/6.webp";
 
 const services = [
-  { title: "Estimation & BOQ", image: serviceOne },
-  { title: "Land Development", image: serviceTwo },
-  { title: "Industrial Construction", image: serviceThree },
-  { title: "Factory Buildings", image: serviceFour },
-  { title: "Industrial Roads", image: serviceFive },
-  { title: "Master Planning", image: serviceSix },
+  { title: "Estimation & BOQ", image: serviceOne, path: "/services/estimation-and-boq" },
+  { title: "Land Development", image: serviceTwo, path: "/services/land-development" },
+  { title: "Industrial Construction", image: serviceThree, path: "/services/industrial-construction" },
+  { title: "Factory Buildings", image: serviceFour, path: "/services/factory-buildings" },
+  { title: "Industrial Roads", image: serviceFive, path: "/services/industrial-roads" },
+  { title: "Master Planning", image: serviceSix, path: "/services/master-planning" },
 ];
 
 export default function SMEServices() {
@@ -78,13 +78,7 @@ export default function SMEServices() {
                   onFocus={() => setActiveService(index)}
                   onClick={() => {
                     setActiveService(index);
-                    if (index === 0) navigate("/services/estimation-and-boq");
-                    if (index === 1) navigate("/services/land-development");
-                    if (index === 2)
-                      navigate("/services/industrial-construction");
-                    if (index === 3) navigate("/services/factory-buildings");
-                    if (index === 4) navigate("/services/industrial-roads");
-                    if (index === 5) navigate("/services/master-planning");
+                    navigate(service.path);
                   }}
                 >
                   <span

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/common/Navbar";
+import Navbar from "../../Components/Common/Navbar";
 import heroImage from "../../assets/Service/SubPagesHEro.png";
 import contentImage from "../../assets/optimized/services/1.webp";
 import sideBackground from "../../assets/Service/sidebottomBG.png";
 import sideOverlay from "../../assets/Service/SideBottomOverLay.png";
-import footerLogo from "../../assets/Footer-logo.png";
+import footerLogo from "../../assets/FooterLogo.png";
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -102,7 +102,9 @@ function ServiceHero({ reduceMotion, title }) {
         transition={{ duration: 1.1, ease }}
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
-      <Navbar />
+      <div className="mx-auto mt-3.5 w-[calc(100%-60px)] max-[760px]:mt-3 max-[760px]:w-[calc(100%-24px)]">
+              <Navbar />
+            </div>
 
       <motion.div
         className="absolute right-[4.6%] bottom-[5.8%] left-[4.6%] max-[600px]:right-5 max-[600px]:left-5"
