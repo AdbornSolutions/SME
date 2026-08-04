@@ -31,15 +31,23 @@ const reveal = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.72, ease } },
 };
 
-function MemberCard({ image, name, role }) {
+function MemberCard({ image, name, role, info }) {
   return (
-    <article>
-      <img
-        className="aspect-[.93/1] w-full object-cover"
-        src={image}
-        alt={name}
-        loading="lazy"
-      />
+    <article className="group" tabIndex={0}>
+      <div className="relative aspect-[.93/1] overflow-hidden rounded-[12px]">
+        <img
+          className="size-full object-cover transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.035] group-focus:scale-[1.035]"
+          src={image}
+          alt={name}
+          loading="lazy"
+        />
+        <div className="absolute inset-0 flex translate-y-5 flex-col justify-end bg-gradient-to-t from-black/95 via-black/45 to-transparent p-[clamp(20px,2.2vw,32px)] text-white opacity-0 transition-[transform,opacity] duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100">
+          <span className="mb-5 h-px w-12 bg-[#ff4b2d]" aria-hidden="true" />
+          <p className="text-[clamp(11px,.9vw,15px)] leading-[1.45]">
+            {info}
+          </p>
+        </div>
+      </div>
       <div className="mt-4 flex items-start justify-between gap-2">
         <div>
           <h3 className="font-display text-[clamp(14px,1.25vw,20px)] font-medium leading-none text-[#141416]">
@@ -253,13 +261,15 @@ export default function Team() {
           </article>
           <MemberCard
             image={ethanImage}
-            name="Ethan Roberts"
-            role="Marketing Leader"
+            name="Mr. Zeeshan Ali"
+            role="Senior Engineer"
+            info="Mr. Zeeshan Ali is a Senior Engineer with 3+ years of experience in project planning, procurement, billing, BOQ, estimation, tendering, and site coordination. He has managed billing worth ₹100+ crore, completed 20+ projects, currently oversees 20+ live projects, and leads a 13-member cross-functional team."
           />
           <MemberCard
             image={kashishImage}
             name="Ms. Kashish Mulchandani"
             role="Senior Accountant Officer"
+            info="Ms. Kashish Mulchandani joins us as Senior Accountant Officer, bringing expertise in financial management, project accounting, cost control, commercial operations, and statutory compliance. She is committed to ensuring financial accuracy, operational efficiency, and supporting the organization's continued growth."
           />
         </div>
       </div>
