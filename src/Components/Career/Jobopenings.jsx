@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { submitLead } from "../../lib/submitLead";
 
 const jobs = [
   {
@@ -44,6 +45,7 @@ function ClockIcon() {
 
 export default function Jobopenings() {
   const [selectedJob, setSelectedJob] = useState(null);
+  const [submitState, setSubmitState] = useState("idle");
 
   useEffect(() => {
     if (!selectedJob) return undefined;
@@ -62,16 +64,26 @@ export default function Jobopenings() {
     };
   }, [selectedJob]);
 
-  const submitApplication = (event) => {
+  const submitApplication = async (event) => {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(`Application for ${selectedJob}`);
-    const body = encodeURIComponent(
-      `Name: ${form.get("name")}\nEmail: ${form.get("email")}\nPhone: ${form.get("phone")}\nExperience: ${form.get("experience")}\n\nMessage:\n${form.get("message")}`,
-    );
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    setSubmitState("loading");
 
-    window.location.href = `mailto:smecontractors1@gmail.com?subject=${subject}&body=${body}`;
-    setSelectedJob(null);
+    try {
+      await submitLead("career", {
+        jobTitle: selectedJob,
+        name: form.get("name"),
+        email: form.get("email"),
+        phone: form.get("phone"),
+        experience: form.get("experience"),
+        message: form.get("message"),
+      });
+      formElement.reset();
+      setSubmitState("success");
+    } catch {
+      setSubmitState("error");
+    }
   };
 
   return (
@@ -129,7 +141,10 @@ export default function Jobopenings() {
                 <button
                   className="inline-flex h-9 items-center gap-2 rounded-full bg-[#ff4b2e] px-[14px] text-[11px] font-semibold text-white no-underline transition-transform duration-200 hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff4b2e]"
                   type="button"
-                  onClick={() => setSelectedJob(job.title)}
+                  onClick={() => {
+                    setSelectedJob(job.title);
+                    setSubmitState("idle");
+                  }}
                   aria-label={`Apply for ${job.title}`}
                 >
                   Apply now
@@ -180,8 +195,7 @@ export default function Jobopenings() {
               Apply for {selectedJob}
             </h2>
             <p className="mt-3 text-[13px] leading-relaxed text-[#62605c]">
-              Share your details below. Your email app will open with the
-              application ready to send.
+              Share your details below and we&apos;ll save your application for review.
             </p>
 
             <form className="mt-6 grid grid-cols-2 gap-4 max-[560px]:grid-cols-1" onSubmit={submitApplication}>
@@ -238,6 +252,10 @@ export default function Jobopenings() {
                 />
               </label>
               <div className="col-span-2 mt-1 flex items-center justify-end gap-3 max-[560px]:col-span-1">
+                <p className={`mr-auto text-[12px] ${submitState === "error" ? "text-red-600" : "text-emerald-700"}`} role="status">
+                  {submitState === "success" && "Application submitted successfully."}
+                  {submitState === "error" && "Submission failed. Please try again."}
+                </p>
                 <button
                   className="h-11 cursor-pointer rounded-full border border-[#d4d1cb] bg-transparent px-5 text-[12px] font-semibold text-[#333]"
                   type="button"
@@ -248,8 +266,9 @@ export default function Jobopenings() {
                 <button
                   className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#ff4b2e] px-6 text-[12px] font-semibold text-white transition-transform hover:-translate-y-px"
                   type="submit"
+                  disabled={submitState === "loading" || submitState === "success"}
                 >
-                  Submit application
+                  {submitState === "loading" ? "Submitting..." : submitState === "success" ? "Submitted" : "Submit application"}
                   <svg className="size-3 fill-none stroke-current stroke-[1.5]" viewBox="0 0 12 12" aria-hidden="true">
                     <path d="m4 2 4 4-4 4" />
                   </svg>

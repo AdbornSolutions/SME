@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import footerLogo from "../../assets/FooterLogo.png";
 import footerBackground from "../../assets/footerbg.png";
+import { submitLead } from "../../lib/submitLead";
 
 const companyLinks = [
   { label: "Home", to: "/" },
@@ -53,12 +55,21 @@ function SocialIcon({ label, children, className }) {
 }
 
 export default function Footer() {
-  const subscribe = (event) => {
+  const [submitState, setSubmitState] = useState("idle");
+
+  const subscribe = async (event) => {
     event.preventDefault();
-    const email = new FormData(event.currentTarget).get("subscriberEmail");
-    const subject = encodeURIComponent("Newsletter subscription request");
-    const body = encodeURIComponent(`Please subscribe this email address: ${email}`);
-    window.location.href = `mailto:Info@smeinfra.com?subject=${subject}&body=${body}`;
+    const formElement = event.currentTarget;
+    const email = new FormData(formElement).get("subscriberEmail");
+    setSubmitState("loading");
+
+    try {
+      await submitLead("newsletter", { email });
+      formElement.reset();
+      setSubmitState("success");
+    } catch {
+      setSubmitState("error");
+    }
   };
 
   return (
@@ -109,10 +120,15 @@ export default function Footer() {
               <button
                 className="bg-[#ff4b2d] px-5 text-[13px] font-medium transition-colors hover:bg-[#e94125]"
                 type="submit"
+                disabled={submitState === "loading"}
               >
-                SUBSCRIBE
+                {submitState === "loading" ? "SAVING..." : "SUBSCRIBE"}
               </button>
             </form>
+            <p className={`mt-2 text-[12px] ${submitState === "error" ? "text-red-300" : "text-white/65"}`} role="status">
+              {submitState === "success" && "Thank you. You are subscribed."}
+              {submitState === "error" && "Could not subscribe. Please try again."}
+            </p>
             <p className="mt-8 text-[clamp(13px,1vw,16px)] font-medium text-white/25">
               Follow Us
             </p>

@@ -1,7 +1,9 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 import Navbar from "../Components/Common/Navbar";
 import heroImage from "../assets/CommonHero.png";
 import contactBackground from "../assets/ContactBg.png";
+import { submitLead } from "../lib/submitLead";
 
 const ease = [0.16, 1, 0.3, 1];
 const reveal = {
@@ -81,14 +83,28 @@ function ContactDetails() {
 }
 
 function ContactForm() {
-  const handleSubmit = (event) => {
+  const [submitState, setSubmitState] = useState("idle");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(`Project inquiry - ${form.get("service") || "General"}`);
-    const body = encodeURIComponent(
-      `Name: ${form.get("name")}\nEmail: ${form.get("email")}\nCompany: ${form.get("company")}\nPhone: ${form.get("phone")}\nService: ${form.get("service")}\n\nProject details:\n${form.get("details")}`,
-    );
-    window.location.href = `mailto:smecontractors1@gmail.com?subject=${subject}&body=${body}`;
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    setSubmitState("loading");
+
+    try {
+      await submitLead("contact", {
+        name: form.get("name"),
+        email: form.get("email"),
+        company: form.get("company"),
+        phone: form.get("phone"),
+        service: form.get("service"),
+        details: form.get("details"),
+      });
+      formElement.reset();
+      setSubmitState("success");
+    } catch {
+      setSubmitState("error");
+    }
   };
   const fieldClass = "mt-[9px] h-[42px] w-full border-0 bg-white/75 px-[18px] text-[13px] outline-none placeholder:text-[#9c9c9c] focus:ring-1 focus:ring-[#ff4b2e]";
 
@@ -124,10 +140,14 @@ function ContactForm() {
         <input className="mt-px size-3 accent-[#ff4b2e]" type="checkbox" required />
         <span>I agree to receive follow-up emails about my request and related services.</span>
       </label>
-      <motion.button className="mt-[24px] inline-flex h-[43px] items-center gap-[9px] rounded-full border-0 bg-[#ff4b2e] px-[24px] text-[10px] font-semibold text-white" type="submit" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-        SUBMIT INQUIRY
+      <motion.button className="mt-[24px] inline-flex h-[43px] items-center gap-[9px] rounded-full border-0 bg-[#ff4b2e] px-[24px] text-[10px] font-semibold text-white disabled:cursor-not-allowed disabled:opacity-65" type="submit" disabled={submitState === "loading" || submitState === "success"} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+        {submitState === "loading" ? "SUBMITTING..." : submitState === "success" ? "SUBMITTED" : "SUBMIT INQUIRY"}
         <svg className="size-3 fill-none stroke-current" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 9 6-6M4 3h5v5" /></svg>
       </motion.button>
+      <p className={`mt-3 text-[12px] ${submitState === "error" ? "text-red-700" : "text-emerald-700"}`} role="status">
+        {submitState === "success" && "Thank you. Your inquiry has been submitted."}
+        {submitState === "error" && "Submission failed. Please try again."}
+      </p>
     </motion.form>
   );
 }
