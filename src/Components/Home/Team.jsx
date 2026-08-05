@@ -127,7 +127,7 @@ function LeadershipProfile() {
             variants={{ visible: { transition: { staggerChildren: 0.09 } } }}
           >
             <motion.h3
-              className="font-display text-[clamp(1.35rem,1.7vw,1.75rem)] font-medium tracking-[-.035em]"
+              className="font-display text-[clamp(1.35rem,1.7vw,1.75rem)] text-white font-medium tracking-[-.035em]"
               variants={reveal}
             >
               Subhash Mandhan
@@ -159,14 +159,14 @@ function LeadershipProfile() {
           }}
         >
           <motion.span
-            className="w-fit rounded-full border border-white/35 px-4 py-1.5 text-[11px] font-medium leading-none uppercase"
+            className="w-fit rounded-full border border-white/35 px-4 py-1.5 text-white text-[11px] font-medium leading-none uppercase"
             variants={reveal}
           >
             Leadership Profile
           </motion.span>
           <motion.h2
             id="leadership-profile-title"
-            className="mt-7 font-display text-[clamp(2.2rem,3.15vw,3.4rem)] font-medium leading-none tracking-[-.05em]"
+            className="mt-7 font-display text-[clamp(2.2rem,3.15vw,3.4rem)] text-white font-medium leading-none tracking-[-.05em]"
             variants={reveal}
           >
             Mr. Subhash Mandhan
@@ -193,7 +193,7 @@ function LeadershipProfile() {
             and large-scale site development works.
           </motion.p>
           <motion.h3
-            className="mt-8 font-display text-[clamp(1.1rem,1.3vw,1.35rem)] font-medium tracking-[-.025em]"
+            className="mt-8 font-display text-[clamp(1.1rem,1.3vw,1.35rem)] text-white font-medium tracking-[-.025em]"
             variants={reveal}
           >
             Engineering &amp; Project Leadership — Core Expertise
