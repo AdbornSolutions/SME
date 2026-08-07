@@ -3,10 +3,9 @@ import bgImage from "../../assets/bg.png";
 import Navbar from "../Common/Navbar";
 
 const stats = [
-  ["20+", "Factories", "layers"],
+  ["35+", "Factories", "layers"],
   ["20+", "Residential Building", "building"],
   ["10+", "Industrial Layout", "layout"],
-  ["60+", "Complete Projects", "target"],
   ["60+", "Complete Projects", "target"],
 ];
 

@@ -263,7 +263,7 @@ export default function Team() {
             image={ethanImage}
             name="Mr. Zeeshan Ali"
             role="Senior Engineer"
-            info="Mr. Zeeshan Ali is a Senior Engineer with 3+ years of experience in project planning, procurement, billing, BOQ, estimation, tendering, and site coordination. He has managed billing worth ₹100+ crore, completed 20+ projects, currently oversees 20+ live projects, and leads a 13-member cross-functional team."
+            info="Mr. Zeeshan Ali is a Senior Engineer with 5+ years of experience in project planning, procurement, billing, BOQ, estimation, tendering, and site coordination. He has managed billing worth ₹100+ crore, completed 20+ projects, currently oversees 20+ live projects, and leads a 13-member cross-functional team."
           />
           <MemberCard
             image={kashishImage}
